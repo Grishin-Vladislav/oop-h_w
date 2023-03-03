@@ -97,24 +97,28 @@ class Reviewer(Mentor):
 
 def average_by_course_students(students, course):
     res = 0
+    total_grades = 0
     for student in students:
         if isinstance(student, Student) and course in student.grades.keys():
             res += sum(student.grades[course])
+            total_grades += len(student.grades[course])
         else:
             print('error')
             return
-    return res / len(students)
+    return res / total_grades
 
 
 def average_by_course_lecturers(lecturers, course):
     res = 0
+    total_grades = 0
     for lecturer in lecturers:
         if isinstance(lecturer, Lecturer) and course in lecturer.grades.keys():
             res += sum(lecturer.grades[course])
+            total_grades += len(lecturer.grades[course])
         else:
             print('error')
             return
-    return res / len(lecturers)
+    return res / total_grades
 
 
 stud1 = Student('Маша', 'Иванова', 'f')
