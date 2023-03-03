@@ -25,7 +25,7 @@ class Student:
 
     def grades_average(self):
         if self.grades:
-            return sum(sum(i) for i in self.grades.values()) / len(self.grades)
+            return sum(sum(i) for i in self.grades.values()) / sum(len(i) for i in self.grades.values())
         return 'no current grades'
 
     def __str__(self):
@@ -61,7 +61,7 @@ class Lecturer(Mentor):
 
     def grades_average(self):
         if self.grades:
-            return sum(sum(i) for i in self.grades.values()) / len(self.grades)
+            return sum(sum(i) for i in self.grades.values()) / sum(len(i) for i in self.grades.values())
         return 'no current grades'
 
     def __str__(self):
