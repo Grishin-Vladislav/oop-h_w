@@ -28,17 +28,6 @@ class Student:
             return sum(sum(i) for i in self.grades.values()) / len(self.grades)
         return 'no current grades'
 
-    @staticmethod
-    def average_by_course(students, course):
-        res = 0
-        for student in students:
-            if isinstance(student, Student) and course in student.grades.keys():
-                res += sum(student.grades[course])
-            else:
-                print('error')
-                return
-        return res / len(students)
-
     def __str__(self):
         return f'name - {self.name}\n' \
                f'surname - {self.surname}\n' \
@@ -75,17 +64,6 @@ class Lecturer(Mentor):
             return sum(sum(i) for i in self.grades.values()) / len(self.grades)
         return 'no current grades'
 
-    @staticmethod
-    def average_by_course(lecturers, course):
-        res = 0
-        for lecturer in lecturers:
-            if isinstance(lecturer, Lecturer) and course in lecturer.grades.keys():
-                res += sum(lecturer.grades[course])
-            else:
-                print('error')
-                return
-        return res / len(lecturers)
-
     def __str__(self):
         return f'name - {self.name}\n' \
                f'surname - {self.surname}\n' \
@@ -115,6 +93,28 @@ class Reviewer(Mentor):
     def __str__(self):
         return f'name = {self.name}\n' \
                f'surname = {self.surname}'
+
+
+def average_by_course_students(students, course):
+    res = 0
+    for student in students:
+        if isinstance(student, Student) and course in student.grades.keys():
+            res += sum(student.grades[course])
+        else:
+            print('error')
+            return
+    return res / len(students)
+
+
+def average_by_course_lecturers(lecturers, course):
+    res = 0
+    for lecturer in lecturers:
+        if isinstance(lecturer, Lecturer) and course in lecturer.grades.keys():
+            res += sum(lecturer.grades[course])
+        else:
+            print('error')
+            return
+    return res / len(lecturers)
 
 
 stud1 = Student('Маша', 'Иванова', 'f')
@@ -147,5 +147,5 @@ print(lec1 <= lec2)
 print(lec1 == lec2)
 print(lec1 != lec2)
 
-print(Student.average_by_course([stud1, stud2], 'python'))
-print(Lecturer.average_by_course([lec1, lec2], 'python'))
+print(average_by_course_students([stud1, stud2], 'python'))
+print(average_by_course_lecturers([lec1, lec2], 'python'))
